@@ -1,5 +1,9 @@
 <html>
 <head>
+<!-- wysihtml5 анализатор правил -->
+<script src="path-to-wysihtml5/parser_rules/advanced.js"></script>
+<!-- Библиотека -->
+<script src="path-to-wysihtml5/dist/wysihtml5_0.3.0.min.js"></script>
 <meta charset="utf-8">
 <meta lang="ru">
 <link rel="stylesheet" href="style.css" type="css/text">
@@ -7,6 +11,37 @@
 <title> Новости </title>
 </head>
 <body>
-
+  <script>
+var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id текстовой области
+  toolbar:      "wysihtml5-toolbar", // id тулбара
+  parserRules:  wysihtml5ParserRules // включает анализатор правил
+});
+</script>
+  <div id="wysihtml5-toolbar" style="display: none;">
+  <a data-wysihtml5-command="bold">bold</a>
+  <a data-wysihtml5-command="italic">italic</a>
+ 
+  <!-- Некоторые команды wysihtml5 требуют дополнительные параметры -->
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
+  <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a>
+ 
+  <!-- Некоторые команды wysihtml5 такие как создание ссылки требуют дополнительных параметров (например href) -->
+  <a data-wysihtml5-command="createLink">Создать ссылку</a>
+  <div data-wysihtml5-dialog="createLink" style="display: none;">
+    <label>
+      Ссылка:
+      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+    </label>
+    <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+  </div>
+</div>
+<section class="content">
+  <form><textarea id="wysihtml5-textarea" placeholder="Введите текст и отредактируйте его..." autofocus></textarea></form>
+  
+  <div class="news">
+    
+  </div>
+</section>
 </body>
 </html>
